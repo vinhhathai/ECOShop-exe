@@ -1,0 +1,22 @@
+.sign-in-btn {
+    background-color: #c88a36; 
+    color: white;
+}
+.sign-in-btn:hover {
+    background-color: #ddb471;
+}
+.logo {
+    width: 36px;
+    height: 36px;
+    border: 1px solid #ddb471;
+    border-radius: 50%;
+}
+.fb-btn-custom {
+    background-color: #0866ff;
+    color: white;
+    
+}
+.google-btn-custom {
+    background-color: #ed4337;
+    color: white;
+}
