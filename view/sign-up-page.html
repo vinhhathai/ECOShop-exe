@@ -30,7 +30,7 @@
   <script src="../assets/js/theme-switcher.js"></script>
 
   <!-- Preloaded local web font (Inter) -->
-  <link rel="preload" href="../assets/fonts/inter-variable-latin.woff2" as="font" type="font/woff2" crossorigin="">
+  <link rel="preload" href="../assets/fontlatin.woff2s/inter-variable-" as="font" type="font/woff2" crossorigin="">
 
   <!-- Font icons -->
   <link rel="preload" href="../assets/icons/cartzilla-icons.woff2" as="font" type="font/woff2" crossorigin="">
@@ -51,6 +51,24 @@
 <!-- Body -->
 
 <body>
+  <!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="successModalLabel">Đăng ký thành công</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Tài khoản của bạn đã được tạo thành công. Chào mừng bạn đến với ECO Clothes!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   <!-- Customizer offcanvas -->
   <div class="offcanvas offcanvas-end" id="customizer" tabindex="-1">
@@ -342,7 +360,14 @@
 
   <!-- Bootstrap + Theme scripts -->
   <script src="../assets/js/theme.min.js"></script>
+
   <script>
+    // Function to show success modal
+    function showSuccessModal() {
+      var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+      successModal.show();
+    }
+
     async function submitForm() {
       const formData = {
         userName: document.getElementById('userName').value,
@@ -364,8 +389,8 @@
           throw new Error(response.data.message || 'Unknown error');
         }
 
-        alert('Đăng ký thành công!');
-        window.location.href = 'sign-in-page.html'; 
+        showSuccessModal();
+        window.location.href = 'sign-in-page.html';
       } catch (error) {
         console.error('Error:', error);
         alert('Có lỗi xảy ra: ' + (error.response?.data?.message || error.message));
