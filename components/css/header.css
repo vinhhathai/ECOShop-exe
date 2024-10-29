@@ -1,0 +1,9 @@
+.logoHeader {
+    max-width: 8%;
+}
+.search-bar-container {
+    display: none;
+}
+.show-search {
+    display: block !important;
+}
