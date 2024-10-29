@@ -46,6 +46,16 @@
 
     <!-- Customizer -->
     <script src="../assets/js/customizer.min.js"></script>
+    <style>
+        .card-img-top {
+            width: 100%;
+            /* Make the image full width */
+            height: 200px;
+            /* Set a fixed height for all images */
+            object-fit: cover;
+            /* Cover the area while maintaining aspect ratio */
+        }
+    </style>
 </head>
 
 
@@ -402,115 +412,84 @@
             </aside>
 
             <!-- Product Listing -->
-            <section class="col-md-9">
-                <div class="row">
-                    <!-- Sample Product Card -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="../assets/img/shop/fashion/01.png" class="card-img-top" alt="Product 1">
-                            <div class="card-body">
-                                <h5 class="card-title">Sản phẩm mặc định 1</h5>
-                                <p class="card-text">Giá: 500,000 VND</p>
-                                <a href="#" class="btn btn-primary">Mua ngay</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="../assets/img/shop/fashion/01.png" class="card-img-top" alt="Product 1">
-                            <div class="card-body">
-                                <h5 class="card-title">Sản phẩm mặc định 1</h5>
-                                <p class="card-text">Giá: 500,000 VND</p>
-                                <a href="#" class="btn btn-primary">Mua ngay</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="../assets/img/shop/fashion/01.png" class="card-img-top" alt="Product 1">
-                            <div class="card-body">
-                                <h5 class="card-title">Sản phẩm mặc định 1</h5>
-                                <p class="card-text">Giá: 500,000 VND</p>
-                                <a href="#" class="btn btn-primary">Mua ngay</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="../assets/img/shop/fashion/01.png" class="card-img-top" alt="Product 1">
-                            <div class="card-body">
-                                <h5 class="card-title">Sản phẩm mặc định 1</h5>
-                                <p class="card-text">Giá: 500,000 VND</p>
-                                <a href="#" class="btn btn-primary">Mua ngay</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="../assets/img/shop/fashion/01.png" class="card-img-top" alt="Product 1">
-                            <div class="card-body">
-                                <h5 class="card-title">Sản phẩm mặc định 1</h5>
-                                <p class="card-text">Giá: 500,000 VND</p>
-                                <a href="#" class="btn btn-primary">Mua ngay</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="../assets/img/shop/fashion/01.png" class="card-img-top" alt="Product 1">
-                            <div class="card-body">
-                                <h5 class="card-title">Sản phẩm mặc định 1</h5>
-                                <p class="card-text">Giá: 500,000 VND</p>
-                                <a href="#" class="btn btn-primary">Mua ngay</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="../assets/img/shop/fashion/01.png" class="card-img-top" alt="Product 1">
-                            <div class="card-body">
-                                <h5 class="card-title">Sản phẩm mặc định 1</h5>
-                                <p class="card-text">Giá: 500,000 VND</p>
-                                <a href="#" class="btn btn-primary">Mua ngay</a>
-                            </div>
-                        </div>
-                    </div>
+            <section class="col-md-9" id="productSection">
+                <div class="row" id="productRow">
+                    <!-- Product cards will be rendered here -->
                 </div>
             </section>
-        </div>
-    </main>
 
+            <!-- Page footer -->
+            <iframe id="footerIframe" src="../components/footer.html" scrolling="no" style="width: 100%; border: none;"
+                target="_parent"></iframe>
 
-    <!-- Page footer -->
-    <iframe id="footerIframe" src="../components/footer.html" scrolling="no" style="width: 100%; border: none;"
-        target="_parent"></iframe>
+            <script>
+                // Sample product data
+                const products = [
+                    {
+                        id: 1,
+                        title: 'Sản phẩm mặc định 1',
+                        price: '500,000 VND',
+                        imageUrl: '../assets/img/shop/fashion/01.png'
+                    },
+                    {
+                        id: 2,
+                        title: 'Sản phẩm mặc định 2',
+                        price: '600,000 VND',
+                        imageUrl: '../assets/img/shop/fashion/02.png'
+                    },
+                    {
+                        id: 3,
+                        title: 'Sản phẩm mặc định 3',
+                        price: '700,000 VND',
+                        imageUrl: '../assets/img/shop/fashion/03.png'
+                    }
+                    // Add more products as needed
+                ];
 
-    <script>
-        function resizeIframe() {
-            const iframe = document.getElementById("footerIframe");
-            iframe.style.height = iframe.contentWindow.document.body.scrollHeight + "px";
-        }
+                // Function to render products
+                function renderProducts() {
+                    const productRow = document.getElementById('productRow');
+                    products.forEach(product => {
+                        const productCard = document.createElement('div');
+                        productCard.classList.add('col-md-4', 'mb-4');
 
-        document.getElementById("footerIframe").onload = resizeIframe;
-    </script>
+                        productCard.innerHTML = `
+                            <div class="card">
+                                <img src="${product.imageUrl}" class="card-img-top" alt="${product.title}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${product.title}</h5>
+                                    <p class="card-text">Giá: ${product.price}</p>
+                                    <a href="#" class="btn btn-primary">Mua ngay</a>
+                                </div>
+                            </div>
+                        `;
 
-    <script src="../api/getAllProducts.js"></script>
-    <script src="../api/getCategory.js"></script>
+                        productRow.appendChild(productCard);
+                    });
+                }
 
+                // Call the render function
+                renderProducts();
 
+                function resizeIframe() {
+                    const iframe = document.getElementById("footerIframe");
+                    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + "px";
+                }
 
-    <!-- Vendor scripts -->
-    <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="../assets/vendor/simplebar/simplebar.min.js"></script>
+                document.getElementById("footerIframe").onload = resizeIframe;
 
-    <!-- Bootstrap + Theme scripts -->
-    <script src="../assets/js/theme.min.js"></script>
+                // Include other scripts as needed
+            </script>
 
+            <!-- Vendor scripts -->
+            <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+            <script src="../assets/vendor/simplebar/simplebar.min.js"></script>
 
+            <!-- Bootstrap + Theme scripts -->
+            <script src="../assets/js/theme.min.js"></script>
 
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
 </body>
