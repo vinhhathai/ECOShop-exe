@@ -405,84 +405,103 @@
             <!-- Sidebar for Categories -->
             <aside class="col-md-3">
                 <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action active">Áo</a>
-                    <a href="#" class="list-group-item list-group-item-action">Dây đeo</a>
-                    <a href="#" class="list-group-item list-group-item-action">Sticker</a>
+                    <a href="#" class="list-group-item list-group-item-action active" data-category="ao">Áo</a>
+                    <a href="#" class="list-group-item list-group-item-action" data-category="daydeo">Dây đeo</a>
+                    <a href="#" class="list-group-item list-group-item-action" data-category="sticker">Sticker</a>
                 </div>
             </aside>
 
             <!-- Product Listing -->
             <section class="col-md-9" id="productSection">
-                <div class="row" id="productRow">
+                <div class="row" id="productList">
                     <!-- Product cards will be rendered here -->
                 </div>
             </section>
+        </div>
 
-            <!-- Page footer -->
-            <iframe id="footerIframe" src="../components/footer.html" scrolling="no" style="width: 100%; border: none;"
-                target="_parent"></iframe>
+        <!-- Page footer -->
+        <iframe id="footerIframe" src="../components/footer.html" scrolling="no" style="width: 100%; border: none; margin-top: 25%;"
+            target="_parent"></iframe>
 
-                <script>
-                    // Sample product data
-                    const products = [
-                        {
-                            id: 1,
-                            title: 'Sản phẩm mặc định 1',
-                            price: '465.000 VND',
-                            imageUrl: '../assets/img/shop/fashion/01.png'
-                        },
-                       
-                        {
-                            id: 3,
-                            title: 'Sản phẩm mặc định 3',
-                            price: '465.000 VND',
-                            imageUrl: '../assets/img/shop/fashion/03.png'
-                        }
-                      
-                    ];
-                
-                    // Function to render products
-                    function renderProducts() {
-                        const productRow = document.getElementById('productRow');
-                        products.forEach(product => {
-                            const productCard = document.createElement('div');
-                            productCard.classList.add('col-md-4', 'mb-4');
-                
-                            productCard.innerHTML = `
-                                <div class="card">
-                                    <img src="${product.imageUrl}" class="card-img-top" alt="${product.title}">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${product.title}</h5>
-                                        <p class="card-text">Giá: ${product.price}</p>
-                                        <a href="shop-product-fashion.html?id=${product.id}" class="btn btn-primary">Mua ngay</a>
-                                    </div>
-                                </div>
-                            `;
-                
-                            productRow.appendChild(productCard);
-                        });
-                    }
-                
-                    // Call the render function
-                    renderProducts();
-                
-                    function resizeIframe() {
-                        const iframe = document.getElementById("footerIframe");
-                        iframe.style.height = iframe.contentWindow.document.body.scrollHeight + "px";
-                    }
-                
-                    document.getElementById("footerIframe").onload = resizeIframe;
-                </script>
-                
+        <script>
+            // Dữ liệu mẫu cho các sản phẩm
+            const products = {
+                ao: [
+                    { id: 1, name: "Áo thun con rùa", price: "465,000đ", image: "../assets/img/shop/fashion/product/01.png" },
+                    { id: 2, name: "Áo thun cá đuối", price: "465,000đ", image: "../assets/img/shop/fashion/product/03.png" }
+                ],
+                daydeo: [
+                    { id: 9, name: "Dây đeo thẻ", price: "45.000", image: "../assets/img/shop/fashion/product/99.png" },
+                    { id: 4, name: "Dây đeo chìa khóa", price: "30,000đ", image: "../assets/img/shop/fashion/product/99.png" }
+                ],
+                // sticker: [
+                //     { id: 5, name: "Sticker thú cưng", price: "10,000đ", image: "path/to/image5.jpg" },
+                //     { id: 6, name: "Sticker phong cảnh", price: "15,000đ", image: "path/to/image6.jpg" }
+                // ]
+            };
 
-            <!-- Vendor scripts -->
-            <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
-            <script src="../assets/vendor/simplebar/simplebar.min.js"></script>
+            // Hàm hiển thị sản phẩm theo danh mục
+            function displayProducts(category) {
+                const productList = document.getElementById("productList");
+                productList.innerHTML = ""; // Xóa sản phẩm hiện tại
 
-            <!-- Bootstrap + Theme scripts -->
-            <script src="../assets/js/theme.min.js"></script>
+                if (products[category]) {
+                    products[category].forEach((product) => {
+                        const productItem = document.createElement("div");
+                        productItem.className = "col-md-4 product-item";
+                        productItem.innerHTML = `
+                <div class="card mb-3" onclick="goToProductDetail(${product.id})">
+                    <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                    <div class="card-body">
+                        <h5 class="card-title">${product.name}</h5>
+                        <p class="card-text">${product.price}</p>
+                        <button class="btn btn-primary" onclick="goToProductDetail(${product.id})">Mua</button>
+                    </div>
+                </div>`;
+                        productList.appendChild(productItem);
+                    });
+                } else {
+                    productList.innerHTML = "<p>Không có sản phẩm nào.</p>";
+                }
+            }
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            // Hàm điều hướng đến trang chi tiết sản phẩm
+            function goToProductDetail(productId) {
+                // Điều hướng đến trang productDetail.html và truyền productId qua URL
+                window.location.href = `shop-product-fashion.html?id=${productId}`;
+            }
+
+            // Xử lý sự kiện click vào danh mục
+            document.querySelectorAll(".list-group-item").forEach((item) => {
+                item.addEventListener("click", (event) => {
+                    event.preventDefault();
+
+                    // Xóa class active khỏi tất cả các mục
+                    document.querySelectorAll(".list-group-item").forEach((el) => el.classList.remove("active"));
+
+                    // Thêm class active cho mục được click
+                    item.classList.add("active");
+
+                    // Lấy danh mục từ thuộc tính data-category
+                    const category = item.getAttribute("data-category");
+                    displayProducts(category);
+                });
+            });
+
+
+
+            document.getElementById("footerIframe").onload = resizeIframe;
+        </script>
+
+
+        <!-- Vendor scripts -->
+        <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+        <script src="../assets/vendor/simplebar/simplebar.min.js"></script>
+
+        <!-- Bootstrap + Theme scripts -->
+        <script src="../assets/js/theme.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
 

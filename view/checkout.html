@@ -12,7 +12,6 @@
             border: none;
         }
     </style>
-
 </head>
 
 <body>
@@ -25,15 +24,34 @@
         <div class="card mb-4">
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <img src="../assets/img/shop/fashion/product/01.png" class="card-img"
-                        alt="Sản phẩm mặc định 1">
+                    <img src="../assets/img/shop/fashion/product/01.png" class="card-img" alt="Sản phẩm mặc định 1">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">Tên sản phẩm</h5>
+                        <h5 class="card-title">Áo thun con rùa</h5>
                         <p class="card-text">Giá: <strong>465.000 VND</strong></p>
                         <p class="card-text"><small class="text-muted">Số lượng: 1</small></p>
+                        <p class="card-text"><small class="text-muted">Size: XL</small></p>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thông tin địa chỉ người nhận -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Thông tin người nhận</h5>
+                <div class="form-group">
+                    <label for="receiverName">Họ và Tên</label>
+                    <input type="text" id="receiverName" class="form-control" placeholder="Nhập họ và tên" required>
+                </div>
+                <div class="form-group">
+                    <label for="receiverPhone">Số điện thoại</label>
+                    <input type="text" id="receiverPhone" class="form-control" placeholder="Nhập số điện thoại" required>
+                </div>
+                <div class="form-group">
+                    <label for="receiverAddress">Địa chỉ nhận hàng</label>
+                    <textarea id="receiverAddress" class="form-control" rows="3" placeholder="Nhập địa chỉ chi tiết" required></textarea>
                 </div>
             </div>
         </div>
@@ -73,8 +91,7 @@
                 <div id="momoPaymentInfo" style="display: none;">
                     <h6>Thanh toán qua MoMo</h6>
                     <p>Vui lòng quét mã QR bên dưới hoặc nhấp vào nút "Thanh toán với MoMo".</p>
-                    <img src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png" alt="MoMo QR Code"
-                        width="150">
+                    <img src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png" alt="MoMo QR Code" width="150">
                     <button id="momoPayButton" class="btn btn-primary mt-2">Thanh toán với MoMo</button>
                 </div>
 
@@ -142,6 +159,15 @@
         // Xác nhận thanh toán
         document.getElementById('confirmPayment').addEventListener('click', function () {
             const selectedMethod = paymentMethodSelect.value;
+            const receiverName = document.getElementById('receiverName').value;
+            const receiverPhone = document.getElementById('receiverPhone').value;
+            const receiverAddress = document.getElementById('receiverAddress').value;
+
+            if (!receiverName || !receiverPhone || !receiverAddress) {
+                alert("Vui lòng điền đầy đủ thông tin người nhận.");
+                return;
+            }
+
             if (selectedMethod === 'bank') {
                 alert("Vui lòng chuyển khoản theo thông tin ngân hàng đã cung cấp.");
             } else if (selectedMethod === 'momo') {
@@ -153,7 +179,6 @@
             updateProgressBar(currentStep);
         });
     </script>
-
 </body>
 
 </html>
