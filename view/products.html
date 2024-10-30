@@ -420,8 +420,8 @@
         </div>
 
         <!-- Page footer -->
-        <iframe id="footerIframe" src="../components/footer.html" scrolling="no" style="width: 100%; border: none; margin-top: 25%;"
-            target="_parent"></iframe>
+        <iframe id="footerIframe" src="../components/footer.html" scrolling="no"
+            style="width: 100%; border: none; margin-top: 25%;" target="_parent"></iframe>
 
         <script>
             // Dữ liệu mẫu cho các sản phẩm
@@ -464,6 +464,17 @@
                     productList.innerHTML = "<p>Không có sản phẩm nào.</p>";
                 }
             }
+
+            // Lấy danh mục đầu tiên và hiển thị sản phẩm của nó
+            document.addEventListener("DOMContentLoaded", () => {
+                const firstCategory = document.querySelector(".list-group-item");
+                if (firstCategory) {
+                    firstCategory.classList.add("active"); // Thêm class 'active' cho mục đầu tiên
+                    const category = firstCategory.getAttribute("data-category");
+                    displayProducts(category); // Hiển thị sản phẩm của danh mục đầu tiên
+                }
+            });
+
 
             // Hàm điều hướng đến trang chi tiết sản phẩm
             function goToProductDetail(productId) {
