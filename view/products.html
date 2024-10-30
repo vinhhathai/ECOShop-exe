@@ -422,64 +422,58 @@
             <iframe id="footerIframe" src="../components/footer.html" scrolling="no" style="width: 100%; border: none;"
                 target="_parent"></iframe>
 
-            <script>
-                // Sample product data
-                const products = [
-                    {
-                        id: 1,
-                        title: 'Sản phẩm mặc định 1',
-                        price: '500,000 VND',
-                        imageUrl: '../assets/img/shop/fashion/01.png'
-                    },
-                    {
-                        id: 2,
-                        title: 'Sản phẩm mặc định 2',
-                        price: '600,000 VND',
-                        imageUrl: '../assets/img/shop/fashion/02.png'
-                    },
-                    {
-                        id: 3,
-                        title: 'Sản phẩm mặc định 3',
-                        price: '700,000 VND',
-                        imageUrl: '../assets/img/shop/fashion/03.png'
-                    }
-                    // Add more products as needed
-                ];
-
-                // Function to render products
-                function renderProducts() {
-                    const productRow = document.getElementById('productRow');
-                    products.forEach(product => {
-                        const productCard = document.createElement('div');
-                        productCard.classList.add('col-md-4', 'mb-4');
-
-                        productCard.innerHTML = `
-                            <div class="card">
-                                <img src="${product.imageUrl}" class="card-img-top" alt="${product.title}">
-                                <div class="card-body">
-                                    <h5 class="card-title">${product.title}</h5>
-                                    <p class="card-text">Giá: ${product.price}</p>
-                                    <a href="#" class="btn btn-primary">Mua ngay</a>
+                <script>
+                    // Sample product data
+                    const products = [
+                        {
+                            id: 1,
+                            title: 'Sản phẩm mặc định 1',
+                            price: '465.000 VND',
+                            imageUrl: '../assets/img/shop/fashion/01.png'
+                        },
+                       
+                        {
+                            id: 3,
+                            title: 'Sản phẩm mặc định 3',
+                            price: '465.000 VND',
+                            imageUrl: '../assets/img/shop/fashion/03.png'
+                        }
+                      
+                    ];
+                
+                    // Function to render products
+                    function renderProducts() {
+                        const productRow = document.getElementById('productRow');
+                        products.forEach(product => {
+                            const productCard = document.createElement('div');
+                            productCard.classList.add('col-md-4', 'mb-4');
+                
+                            productCard.innerHTML = `
+                                <div class="card">
+                                    <img src="${product.imageUrl}" class="card-img-top" alt="${product.title}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${product.title}</h5>
+                                        <p class="card-text">Giá: ${product.price}</p>
+                                        <a href="shop-product-fashion.html?id=${product.id}" class="btn btn-primary">Mua ngay</a>
+                                    </div>
                                 </div>
-                            </div>
-                        `;
-
-                        productRow.appendChild(productCard);
-                    });
-                }
-
-                // Call the render function
-                renderProducts();
-
-                function resizeIframe() {
-                    const iframe = document.getElementById("footerIframe");
-                    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + "px";
-                }
-
-                document.getElementById("footerIframe").onload = resizeIframe;
-
-                // Include other scripts as needed
-            </script>
+                            `;
+                
+                            productRow.appendChild(productCard);
+                        });
+                    }
+                
+                    // Call the render function
+                    renderProducts();
+                
+                    function resizeIframe() {
+                        const iframe = document.getElementById("footerIframe");
+                        iframe.style.height = iframe.contentWindow.document.body.scrollHeight + "px";
+                    }
+                
+                    document.getElementById("footerIframe").onload = resizeIframe;
+                </script>
+                
 
             <!-- Vendor scripts -->
             <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>

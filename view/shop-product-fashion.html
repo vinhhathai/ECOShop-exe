@@ -630,8 +630,8 @@
         <h4 class="offcanvas-title" id="shoppingCartLabel">Giỏi hàng</h4>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      
-      
+
+
     </div>
 
     <!-- Items -->
@@ -640,13 +640,12 @@
       <!-- Item -->
       <div class="d-flex align-items-center">
         <a class="flex-shrink-0" href="#!">
-          <img src="../assets/img/shop/fashion/01.png" class="bg-body-tertiary rounded" width="110"
-            alt="Thumbnail">
+          <img src="../assets/img/shop/fashion/01.png" class="bg-body-tertiary rounded" width="110" alt="Thumbnail">
         </a>
         <div class="w-100 min-w-0 ps-3">
           <h5 class="d-flex animate-underline mb-2">
-            <a class="d-block fs-sm fw-medium text-truncate animate-target" href="#!">Áo thun con rùa
-              </a>
+            <a class="d-block fs-sm fw-medium text-truncate animate-target" href="#!">Sản phẩm mặc định
+            </a>
           </h5>
           <div class="h6 pb-1 mb-2">465.000vnd</div>
           <div class="d-flex align-items-center justify-content-between">
@@ -666,12 +665,12 @@
       </div>
 
       <!-- Item -->
-      
+
 
       <!-- Item -->
       <div class="d-flex align-items-center">
-        
-        
+
+
       </div>
     </div>
 
@@ -682,8 +681,7 @@
         <span class="h6 mb-0">465.000vnd</span>
       </div>
       <div class="d-flex w-100 gap-3">
-        <a class="btn btn-lg btn-secondary w-100" href="#!">View cart</a>
-        <a class="btn btn-lg btn-dark w-100" href="#!">Checkout</a>
+        <a class="btn btn-lg btn-dark w-100" href="../view/checkout.html">Checkout</a>
       </div>
     </div>
   </div>
@@ -742,7 +740,7 @@
       </div>
 
       <!-- Navbar brand (Logo) -->
-      <a class="navbar-brand fs-2 py-0 m-0 me-auto me-sm-n5" href="home-fashion-v1.html">ECO-SHOP</a>
+      <a class="navbar-brand fs-2 py-0 m-0 me-auto me-sm-n5" href="../index.html">ECO-SHOP</a>
 
       <!-- Button group -->
       <div class="d-flex align-items-center">
@@ -756,23 +754,9 @@
 
         <!-- Theme switcher (light/dark/auto) -->
         <div class="dropdown">
-          <button type="button"
-            class="theme-switcher btn btn-icon btn-lg btn-outline-secondary fs-lg border-0 rounded-circle animate-scale"
-            data-bs-toggle="dropdown" aria-expanded="false" aria-label="Toggle theme (light)">
-            <span class="theme-icon-active d-flex animate-target">
-              <i class="ci-sun"></i>
-            </span>
-          </button>
+          
           <ul class="dropdown-menu" style="--cz-dropdown-min-width: 9rem">
-            <li>
-              <button type="button" class="dropdown-item active" data-bs-theme-value="light" aria-pressed="true">
-                <span class="theme-icon d-flex fs-base me-2">
-                  <i class="ci-sun"></i>
-                </span>
-                <span class="theme-label">Light</span>
-                <i class="item-active-indicator ci-check ms-auto"></i>
-              </button>
-            </li>
+
             <li>
               <button type="button" class="dropdown-item" data-bs-theme-value="dark" aria-pressed="false">
                 <span class="theme-icon d-flex fs-base me-2">
@@ -804,25 +788,24 @@
 
         <!-- Account button visible on screens > 768px wide (md breakpoint) -->
         <a class="btn btn-icon btn-lg fs-lg btn-outline-secondary border-0 rounded-circle animate-shake d-none d-md-inline-flex"
-          href="account-signin.html">
+          href="../view/profile.html">
           <i class="ci-user animate-target"></i>
           <span class="visually-hidden">Account</span>
         </a>
 
         <!-- Wishlist button visible on screens > 768px wide (md breakpoint) -->
-        <a class="btn btn-icon btn-lg fs-lg btn-outline-secondary border-0 rounded-circle animate-pulse d-none d-md-inline-flex"
+        <!-- <a class="btn btn-icon btn-lg fs-lg btn-outline-secondary border-0 rounded-circle animate-pulse d-none d-md-inline-flex"
           href="#!">
           <i class="ci-heart animate-target"></i>
           <span class="visually-hidden">Wishlist</span>
-        </a>
+        </a> -->
 
         <!-- Cart button -->
         <button type="button"
           class="btn btn-icon btn-lg fs-xl btn-outline-secondary position-relative border-0 rounded-circle animate-scale"
           data-bs-toggle="offcanvas" data-bs-target="#shoppingCart" aria-controls="shoppingCart"
           aria-label="Shopping cart">
-          <span class="position-absolute top-0 start-100 badge fs-xs text-bg-primary rounded-pill mt-1 ms-n4 z-2"
-            style="--cz-badge-padding-y: .25em; --cz-badge-padding-x: .42em">3</span>
+
           <i class="ci-shopping-bag animate-target me-1"></i>
         </button>
       </div>
@@ -1069,7 +1052,7 @@
               bật với một thông điệp ý nghĩa.
 
             </p>
-            
+
 
             <!-- Price -->
             <a class="d-inline-block fs-sm fw-medium text-dark-emphasis collapsed mt-1" href="#moreDescription"
@@ -1130,10 +1113,30 @@
                   <i class="ci-plus"></i>
                 </button>
               </div>
-              <button type="button" class="btn btn-lg btn-dark w-100">Thêm vào giỏ hàng</button>
+              <!-- Nút thêm vào giỏ hàng -->
+              <button type="button" class="btn btn-lg btn-dark w-100" data-toggle="modal"
+                data-target="#successModal">Thêm vào giỏ hàng</button>
             </div>
-
-
+            <!-- Modal -->
+            <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Thông báo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Thêm vào giỏ hàng thành công!
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <!-- Stock status -->
 
@@ -1199,6 +1202,64 @@
         </div>
     </footer>
     </div>
+
+    <!-- Sticky product preview + Add to cart CTA -->
+    <section class="sticky-product-banner sticky-top" data-sticky-element="">
+      <div class="sticky-product-banner-inner pt-5">
+        <div class="navbar container flex-nowrap align-items-center bg-body pt-4 pt-lg-5 mt-lg-n2">
+          <div class="d-flex align-items-center min-w-0 ms-lg-2 me-3">
+            <div class="ratio ratio-1x1 flex-shrink-0" style="width: 50px">
+              <img id="productImg" src="../assets/img/shop/fashion/product/thumb.png" alt="Image">
+            </div>
+            <h4 id="productTitle" class="h6 fw-medium d-none d-lg-block ps-3 mb-0">Denim midi skirt with pockets</h4>
+            <div class="w-100 min-w-0 d-lg-none ps-2">
+              <h4 class="fs-sm fw-medium text-truncate mb-1">Denim midi skirt with pockets</h4>
+              <div class="h6 mb-0">$126.50 <del class="fs-xs fw-normal text-body-tertiary">$156.00</del></div>
+            </div>
+          </div>
+          <div class="h4 d-none d-lg-block mb-0 ms-auto me-4" id="productPrice">$126.50 <del
+              class="fs-sm fw-normal text-body-tertiary">$156.00</del></div>
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-icon btn-secondary animate-pulse" aria-label="Add to Wishlist">
+              <i class="ci-heart fs-base animate-target"></i>
+            </button>
+            <button id="addToCartBtn" type="button" class="btn btn-dark ms-auto d-none d-md-inline-flex px-4">Add to
+              cart</button>
+            <button type="button" class="btn btn-icon btn-dark animate-slide-end ms-auto d-md-none"
+              aria-label="Add to Cart">
+              <i class="ci-shopping-cart fs-base animate-target"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+
+      document.querySelector('.btn-dark').addEventListener('click', function () {
+        $('#successModal').modal('show');
+      });
+
+      // Product information
+      const product = {
+        id: 1, // Unique ID for the product
+        title: document.getElementById("productTitle").textContent,
+        price: document.getElementById("productPrice").textContent.trim().split(" ")[0],
+        imageUrl: document.getElementById("productImg").src
+      };
+
+      // Function to add product to cart
+      function addToCart(product) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert("Sản phẩm đã được thêm vào giỏ hàng!");
+      }
+
+      // Add event listener to "Add to cart" button
+      document.getElementById("addToCartBtn").addEventListener("click", () => addToCart(product));
+    </script>
+
 
 
     <!-- Vendor scripts -->

@@ -6,9 +6,19 @@
     <title>User Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <style>
+        body {
+            background-image: url('../assets/img/home/fashion/v2/hero/image.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
         .profile-container {
             max-width: 500px;
             margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.8); /* Làm mờ nền của container */
+            border-radius: 8px;
+            padding: 20px;
         }
         .profile-avatar {
             width: 120px;
@@ -27,7 +37,6 @@
 <body>
 
     <div class="container profile-container">
-        
         <div class="card p-4">
             <div class="text-center mb-4">
                 <img src="avatar-placeholder.png" alt="Avatar" class="profile-avatar">
@@ -51,12 +60,27 @@
                     <input type="text" class="form-control" value="123 Đường ABC, Thành phố XYZ" readonly>
                 </div>
                 <div class="edit-btn">
-                    <button type="button" class="btn btn-primary">Chỉnh sửa</button>
+                    <button type="button" class="btn btn-primary" id="editButton" onclick="toggleEdit()">Chỉnh sửa</button>
                 </div>
             </form>
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleEdit() {
+            const formFields = document.querySelectorAll('.profile-info input');
+            const editButton = document.getElementById('editButton');
+
+            if (editButton.textContent === 'Chỉnh sửa') {
+                formFields.forEach(field => field.removeAttribute('readonly'));
+                editButton.textContent = 'Lưu';
+            } else {
+                formFields.forEach(field => field.setAttribute('readonly', true));
+                editButton.textContent = 'Chỉnh sửa';
+                // Thêm mã để xử lý lưu thông tin ở đây nếu cần
+            }
+        }
+    </script>
 </body>
 </html>

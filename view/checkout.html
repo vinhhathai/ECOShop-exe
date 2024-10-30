@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Thanh Toán</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        iframe {
+            width: 100%;
+            border: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <iframe src="../components/header.html" scrolling="no" style="overflow: hidden;" target="_parent"></iframe>
+    <div class="container mt-5">
+
+        <h2 class="text-center mb-4">Thanh Toán</h2>
+
+        <!-- Thông tin sản phẩm -->
+        <div class="card mb-4">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="../assets/img/shop/fashion/product/01.png" class="card-img"
+                        alt="Sản phẩm mặc định 1">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Tên sản phẩm</h5>
+                        <p class="card-text">Giá: <strong>465.000 VND</strong></p>
+                        <p class="card-text"><small class="text-muted">Số lượng: 1</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thanh tiến trình -->
+        <div class="progress mb-4">
+            <div id="progressBar" class="progress-bar" role="progressbar" style="width: 33%;" aria-valuenow="33"
+                aria-valuemin="0" aria-valuemax="100">Bước 1: Chọn phương thức</div>
+        </div>
+
+        <!-- Thông tin thanh toán -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Thông tin thanh toán</h5>
+                <p>Tổng số tiền: <strong id="totalAmount">1,500,000 VND</strong></p>
+
+                <!-- Lựa chọn phương thức thanh toán -->
+                <div class="mb-3">
+                    <label for="paymentMethod" class="form-label">Chọn phương thức thanh toán:</label>
+                    <select id="paymentMethod" class="form-control">
+                        <option value="bank">Thanh toán qua ngân hàng</option>
+                        <option value="momo">Thanh toán qua MoMo</option>
+                        <option value="cash">Thanh toán bằng tiền mặt</option>
+                    </select>
+                </div>
+
+                <!-- Thông tin thanh toán qua ngân hàng -->
+                <div id="bankPaymentInfo" style="display: none;">
+                    <h6>Thanh toán qua ngân hàng</h6>
+                    <p>Ngân hàng: Vietcombank</p>
+                    <p>Số tài khoản: 123456789</p>
+                    <p>Chủ tài khoản: Công ty ABC</p>
+                    <p>Vui lòng chuyển khoản và ghi rõ nội dung thanh toán.</p>
+                </div>
+
+                <!-- Thông tin thanh toán qua MoMo -->
+                <div id="momoPaymentInfo" style="display: none;">
+                    <h6>Thanh toán qua MoMo</h6>
+                    <p>Vui lòng quét mã QR bên dưới hoặc nhấp vào nút "Thanh toán với MoMo".</p>
+                    <img src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png" alt="MoMo QR Code"
+                        width="150">
+                    <button id="momoPayButton" class="btn btn-primary mt-2">Thanh toán với MoMo</button>
+                </div>
+
+                <!-- Thông tin thanh toán bằng tiền mặt -->
+                <div id="cashPaymentInfo" style="display: none;">
+                    <h6>Thanh toán bằng tiền mặt</h6>
+                    <p>Bạn sẽ thanh toán bằng tiền mặt khi nhận hàng. Nhân viên giao hàng sẽ liên hệ với bạn để sắp xếp
+                        thời gian giao hàng.</p>
+                </div>
+
+                <!-- Nút xác nhận thanh toán -->
+                <button id="confirmPayment" class="btn btn-success mt-3">Xác nhận thanh toán</button>
+            </div>
+        </div>
+        <iframe src="../components/footer.html" scrolling="no" style="overflow: hidden;" target="_parent"></iframe>
+    </div>
+
+    <script>
+        const progressBar = document.getElementById('progressBar');
+        const paymentMethodSelect = document.getElementById('paymentMethod');
+        const bankPaymentInfo = document.getElementById('bankPaymentInfo');
+        const momoPaymentInfo = document.getElementById('momoPaymentInfo');
+        const cashPaymentInfo = document.getElementById('cashPaymentInfo');
+        const momoPayButton = document.getElementById('momoPayButton');
+        let currentStep = 1;
+
+        // Cập nhật thanh tiến trình
+        function updateProgressBar(step) {
+            const progressPercent = step * 33; // Tăng mỗi bước 33%
+            progressBar.style.width = progressPercent + '%';
+            progressBar.setAttribute('aria-valuenow', progressPercent);
+
+            if (step === 1) {
+                progressBar.innerText = 'Bước 1: Chọn phương thức';
+            } else if (step === 2) {
+                progressBar.innerText = 'Bước 2: Xác nhận thông tin';
+            } else if (step === 3) {
+                progressBar.innerText = 'Bước 3: Hoàn tất thanh toán';
+            }
+        }
+
+        // Xử lý thay đổi phương thức thanh toán
+        paymentMethodSelect.addEventListener('change', function () {
+            const selectedMethod = paymentMethodSelect.value;
+            bankPaymentInfo.style.display = 'none';
+            momoPaymentInfo.style.display = 'none';
+            cashPaymentInfo.style.display = 'none';
+
+            if (selectedMethod === 'bank') {
+                bankPaymentInfo.style.display = 'block';
+            } else if (selectedMethod === 'momo') {
+                momoPaymentInfo.style.display = 'block';
+            } else if (selectedMethod === 'cash') {
+                cashPaymentInfo.style.display = 'block';
+            }
+            currentStep = 2; // Chuyển sang bước xác nhận
+            updateProgressBar(currentStep);
+        });
+
+        // Giả lập xử lý thanh toán với MoMo
+        momoPayButton.addEventListener('click', function () {
+            alert("Chuyển đến ứng dụng MoMo để hoàn tất thanh toán.");
+        });
+
+        // Xác nhận thanh toán
+        document.getElementById('confirmPayment').addEventListener('click', function () {
+            const selectedMethod = paymentMethodSelect.value;
+            if (selectedMethod === 'bank') {
+                alert("Vui lòng chuyển khoản theo thông tin ngân hàng đã cung cấp.");
+            } else if (selectedMethod === 'momo') {
+                alert("Vui lòng hoàn tất thanh toán qua MoMo.");
+            } else if (selectedMethod === 'cash') {
+                alert("Thanh toán bằng tiền mặt sẽ được thực hiện khi nhận hàng.");
+            }
+            currentStep = 3; // Chuyển sang bước hoàn tất thanh toán
+            updateProgressBar(currentStep);
+        });
+    </script>
+
+</body>
+
+</html>
